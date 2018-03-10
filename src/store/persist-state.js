@@ -1,0 +1,28 @@
+export const loadState = () => {
+    try {
+        const serializedState = localStorage.getItem('state');
+        if (serializedState === null) {
+            return undefined;
+        }
+        return JSON.parse(serializedState);
+    } catch(err) {
+        return undefined;
+    }
+}
+
+export const saveState = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem('state', serializedState);
+    } catch(err) {}
+}
+
+export const subscribePersistState = (handler) => {
+    try {
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'state' && e.newValue) {
+                handler();
+            }
+        }, false);
+    } catch(err) {}
+}
