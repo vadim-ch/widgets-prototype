@@ -5,8 +5,7 @@
 .vscode
 
 ### Build artifacts ###
-/public/dist
-/public/index.html
+/dist
 /tmpBuild
 
 ### NPM files ###
@@ -15,12 +14,5 @@ npm-debug.log
 
 ### MAAAAC ###
 .DS_Store
-
-### Settings ###
-/src/settings.ts
-/src/settings.js
-
-/typings/*
-!/typings/global.d.ts
 
 /coverage

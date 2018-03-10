@@ -9,10 +9,14 @@ class Dialog extends React.PureComponent {
   }
 
   render() {
-      const { isOpened } = this.props;
+      const { messages } = this.props;
       return (
         <React.Fragment>
-          Dialog
+          <div style={{padding: '10px 15px'}}>
+            messages.map(msg => 
+              <div style={{textAlign: msg.type === 'operator' ? 'left' : 'right'}}>msg.text</div>
+            )
+          </div>
         </React.Fragment>
       );
   }
