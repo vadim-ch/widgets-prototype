@@ -14,9 +14,10 @@ script:
 
 deploy:
   provider: pages
+  edge:
+    branch: v1.8.47
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: /
+  local_dir: dist
   on:
     branch: master
-    target_branch: gh-pages
