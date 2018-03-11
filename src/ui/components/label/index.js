@@ -25,7 +25,7 @@ export class Label extends React.PureComponent {
 
     return (
       <div style={styles} onClick={this.props.onClick}>
-        Chat
+        {this.props.text}
       </div>
     );
   }

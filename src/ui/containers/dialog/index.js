@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import * as actionsCreators from '../../../store/actions';
 import { bindActionCreators } from 'redux';
 import { getMessages } from '../../../store/reducers/messages/selectors';
+import { Chat } from '../../components/chat';
+import Welcome from '../../containers/welcome';
+import { isDialogAvailable } from '../../../store/reducers/dialog/selectors';
+import { isAvailable } from '../../../store/reducers/available/selectors';
 
 class Dialog extends React.PureComponent {
   constructor(props) {
@@ -10,14 +14,16 @@ class Dialog extends React.PureComponent {
   }
 
   render() {
-      const { messages } = this.props;
+      const { isDialogAvailable, messages, isOnline } = this.props;
       return (
         <React.Fragment>
-          <div style={{padding: '10px 15px'}}>
-            {messages.map(msg => 
-              <div key={msg.id} style={{textAlign: msg.type === 'operator' ? 'left' : 'right'}}>{msg.text}</div>
-            )}
-          </div>
+          {isDialogAvailable ?
+            <Chat
+              messages={messages}
+              offlineHandler={!isOnline ? this.props.actionsCreator.destroyDialog : null}
+            /> : 
+            <Welcome/> 
+          }
         </React.Fragment>
       );
   }
@@ -25,7 +31,9 @@ class Dialog extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-      messages: getMessages(state)
+      isDialogAvailable: isDialogAvailable(state),
+      messages: getMessages(state),
+      isOnline: isAvailable(state)
     };
   };
   

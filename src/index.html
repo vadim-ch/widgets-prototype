@@ -6,7 +6,13 @@
  </head>
  <body>
    <div>
-      <button type="button" onClick="localStorage.clear(); location.reload();">Clear storage</button>
+     <button onclick="socketMessage(JSON.stringify({type: 'available', data: true}));">Online</button>
+     <br>
+     <br>
+     <button onclick="socketMessage(JSON.stringify({type: 'available', data: false}));">Offline</button>
+     <br>
+     <br>
+     <button type="button" onClick="localStorage.clear(); location.reload();">Clear storage</button>
    </div>
   <div id="app"></div>
  </body>

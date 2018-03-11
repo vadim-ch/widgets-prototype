@@ -6,6 +6,7 @@ import { groups } from '../reducers/groups';
 import { settings } from '../reducers/settings';
 import { messages } from '../reducers/messages';
 import { invitation } from '../reducers/invitation';
+import { available } from '../reducers/available';
 import { loadState } from '../persist-state';
 
 const appReducers = combineReducers({
@@ -14,6 +15,7 @@ const appReducers = combineReducers({
   groups,
   messages,
   invitation,
+  available,
   settings
 });
 

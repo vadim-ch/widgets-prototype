@@ -45,3 +45,20 @@ export const getHistory = () => {
         }, 1000);
     });
 }
+
+export const mockWebSocket = () => (url) => {
+    const socket = {
+        send: () => {
+            // localStorage.setItem('send')
+        }
+    }
+    try {
+        window.socketMessage = (data) => {
+            socket.onMessage(JSON.parse(data));
+        }
+
+    } catch(err) {
+        console.error(err);
+    }
+    return socket;
+}

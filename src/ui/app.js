@@ -4,6 +4,8 @@ import * as actionsCreators from '../store/actions';
 import { bindActionCreators } from 'redux';
 import Frame from '../ui/containers/frame';
 import { Label } from '../ui/components/label';
+import { isOpenedFrame } from '../store/reducers/application/selectors';
+import { isAvailable } from '../store/reducers/available/selectors';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -15,12 +17,15 @@ class App extends React.PureComponent {
   }
 
   render() {   
-    const { isOpened } = this.props;
+    const { isOpened, isAvailable } = this.props;
     return (
       <React.Fragment>
         {isOpened ? 
           <Frame/> : 
-          <Label onClick={this.props.actionsCreators.startDialog}/>
+          <Label 
+            text={isAvailable ? 'Chat' : 'Offline'}
+            onClick={this.props.actionsCreators.startDialog}
+          />
         }
       </React.Fragment>
     );
@@ -29,7 +34,8 @@ class App extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-      isOpened: state.application.opened
+      isOpened: isOpenedFrame(state),
+      isAvailable: isAvailable(state)
     };
   };
   

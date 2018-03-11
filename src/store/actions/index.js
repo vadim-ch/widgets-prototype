@@ -10,3 +10,5 @@ export { receiveMessage } from './receive-message';
 export { startApp } from './start-app';
 export { setInvitation } from './set-invitation';
 export { destroyInvitation } from './destroy-invitation';
+export { setAvailable } from './set-available';
+export { websocketMessage } from './websocket-message';
