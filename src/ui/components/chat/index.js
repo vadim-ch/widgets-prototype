@@ -14,7 +14,7 @@ export class Chat extends React.PureComponent {
                 <div key={msg.id} style={{textAlign: msg.type === 'operator' ? 'left' : 'right'}}>{msg.text}</div>
             )}
             </div>
-            {this.props.offlineHandler ? <button onClick={this.props.offlineHandler}></button> : null}
+            {this.props.offlineHandler ? <button style={{padding: '10px 15px'}} onClick={this.props.offlineHandler}>Offline form</button> : null}
         </React.Fragment>
     );
   }

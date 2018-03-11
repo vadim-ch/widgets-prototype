@@ -6,6 +6,7 @@ import { isDialogAvailable } from '../reducers/dialog/selectors';
 import { isOneGroup } from '../reducers/groups/selectors';
 import { GO_TO_DIALOG } from '../actions/got-to-dialog';
 import { isAvailable } from '../reducers/available/selectors';
+import { FrameState } from './view-state-middleware';
 
 export const dialogMiddleware = store => next => action => {
   const state = store.getState();
@@ -30,7 +31,6 @@ export const dialogMiddleware = store => next => action => {
               store.dispatch(actionsCreators.setDialog(dialogId));
             }
           });
-          break;
         }
         return next(action);
       }

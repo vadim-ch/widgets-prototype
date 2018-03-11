@@ -8,6 +8,7 @@ import { isDialogAvailable } from '../../../store/reducers/dialog/selectors';
 import { isGroupsAvailable } from '../../../store/reducers/groups/selectors';
 import { isInvitationRunned } from '../../../store/reducers/invitation/selectors';
 import { isAvailable } from '../../../store/reducers/available/selectors';
+import { FrameState } from '../../../store/middlewares/view-state-middleware';
 
 class Frame extends React.PureComponent {
   constructor(props) {
@@ -19,17 +20,29 @@ class Frame extends React.PureComponent {
       
       return (
         <FrameWrapper closeHandler={this.props.actionCreators.closeFrame}>
-          {isInvitationRunned ?
-            <div>Invite</div> :
-            !isOnline && !isDialogAvailable ? 
-              <div>Offline</div> : 
-              isGroupsAvailable ? 
-                <Dialog/> :
-                'spiner'  
-          }
-          
+          {this.view}
         </FrameWrapper>
       );
+  }
+
+  get view() {
+    const spinerStyle = {
+      textAlign: 'center',
+      marginTop: '100px'
+    }
+    const { frameState } = this.props;
+    switch (frameState) {
+      case FrameState.ONLINE: {
+        return <Dialog/>
+      }
+      case FrameState.OFFLINE: {
+        return <div>Offline</div>
+      }
+      case FrameState.INVITE: {
+        return <div>Invite</div>
+      }
+      default: return <div style={spinerStyle}>spiner</div>;
+    }
   }
 }
 
@@ -38,7 +51,8 @@ const mapStateToProps = (state) => {
       isGroupsAvailable: isGroupsAvailable(state),
       isDialogAvailable: isDialogAvailable(state),
       isInvitationRunned: isInvitationRunned(state),
-      isOnline: isAvailable(state)
+      isOnline: isAvailable(state),
+      frameState: state.application.frameState
     };
   };
   

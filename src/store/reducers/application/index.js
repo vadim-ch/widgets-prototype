@@ -1,9 +1,11 @@
 
 import { OPEN_FRAME } from '../../actions/open-frame';
 import { CLOSE_FRAME } from '../../actions/close-frame';
+import { SET_FRAME_STATE } from '../../actions/set-frame-state';
 
 const initialState = {
-    opened: false
+    opened: false,
+    frameState: ''
 };
 
 export function application(state = initialState, action) {
@@ -17,6 +19,11 @@ export function application(state = initialState, action) {
       return {
         ...state,
         opened: false
+      };
+    case SET_FRAME_STATE:
+      return {
+        ...state,
+        frameState: action.payload
       };
     default:
       return state;

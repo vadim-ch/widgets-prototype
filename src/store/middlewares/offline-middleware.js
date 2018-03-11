@@ -6,6 +6,7 @@ import { isDialogAvailable } from '../reducers/dialog/selectors';
 import { isOneGroup } from '../reducers/groups/selectors';
 import { GO_TO_DIALOG } from '../actions/got-to-dialog';
 import { isAvailable } from '../reducers/available/selectors';
+import { FrameState } from './view-state-middleware';
 
 export const offlineMiddleware = store => next => action => {
   const state = store.getState();
@@ -16,7 +17,6 @@ export const offlineMiddleware = store => next => action => {
         const isAvailableChat = isAvailable(store.getState())
         if (!isAvailableChat) {
             store.dispatch(actionsCreators.openFrame());
-            break;
         }
         return next(action);
       }

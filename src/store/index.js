@@ -17,6 +17,7 @@ export const store = createStore(
       middlewares.invitationMiddleware,
       middlewares.availableMiddleware,
       middlewares.offlineMiddleware,
+      middlewares.viewStateMiddleware,
       middlewares.websocketMiddleware,
       createLogger()
     )

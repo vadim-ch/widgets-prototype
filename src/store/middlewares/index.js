@@ -4,3 +4,4 @@ export { invitationMiddleware } from './invitation-middleware';
 export { availableMiddleware } from './available-middleware';
 export { websocketMiddleware } from './websocket-middleware';
 export { offlineMiddleware } from './offline-middleware';
+export { viewStateMiddleware } from './view-state-middleware';

@@ -7,6 +7,8 @@ import { Chat } from '../../components/chat';
 import Welcome from '../../containers/welcome';
 import { isDialogAvailable } from '../../../store/reducers/dialog/selectors';
 import { isAvailable } from '../../../store/reducers/available/selectors';
+import { FrameState } from '../../../store/middlewares/view-state-middleware';
+import { isOneGroup } from '../../../store/reducers/groups/selectors';
 
 class Dialog extends React.PureComponent {
   constructor(props) {
@@ -14,13 +16,13 @@ class Dialog extends React.PureComponent {
   }
 
   render() {
-      const { isDialogAvailable, messages, isOnline } = this.props;
+      const { isDialogAvailable, messages, isOnline, isOneGroup } = this.props;
       return (
         <React.Fragment>
-          {isDialogAvailable ?
+          {isDialogAvailable || isOneGroup  ?
             <Chat
               messages={messages}
-              offlineHandler={!isOnline ? this.props.actionsCreator.destroyDialog : null}
+              offlineHandler={!isOnline ? () => this.props.actionsCreator.setFrameState(FrameState.OFFLINE) : null}
             /> : 
             <Welcome/> 
           }
@@ -33,7 +35,8 @@ const mapStateToProps = (state) => {
     return {
       isDialogAvailable: isDialogAvailable(state),
       messages: getMessages(state),
-      isOnline: isAvailable(state)
+      isOnline: isAvailable(state),
+      isOneGroup: isOneGroup(state)
     };
   };
   
