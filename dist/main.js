@@ -847,7 +847,7 @@ eval("\n\nmodule.exports = function (module) {\n\tif (!module.webpackPolyfill) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.runApp = undefined;\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar ReactDom = _interopRequireWildcard(_reactDom);\n\nvar _root = __webpack_require__(/*! ../ui/root */ \"./src/ui/root.js\");\n\nvar _store = __webpack_require__(/*! ../store */ \"./src/store/index.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar runApp = exports.runApp = function runApp() {\n    console.error('run');\n\n    // const APP_NODE = document.getElementById('app');\n    // ReactDom.render(<Root store={store} />, APP_NODE);\n};\n\n//# sourceURL=webpack:///./src/app/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.runApp = undefined;\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar ReactDom = _interopRequireWildcard(_reactDom);\n\nvar _root = __webpack_require__(/*! ../ui/root */ \"./src/ui/root.js\");\n\nvar _root2 = _interopRequireDefault(_root);\n\nvar _store = __webpack_require__(/*! ../store */ \"./src/store/index.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar runApp = exports.runApp = function runApp() {\n    var APP_NODE = document.getElementById('app');\n    ReactDom.render(React.createElement(_root2.default, { store: _store.store }), APP_NODE);\n};\n\n//# sourceURL=webpack:///./src/app/index.js?");
 
 /***/ }),
 
@@ -863,6 +863,66 @@ eval("\n\nvar _app = __webpack_require__(/*! ./app */ \"./src/app/index.js\");\n
 
 /***/ }),
 
+/***/ "./src/io/index.js":
+/*!*************************!*\
+  !*** ./src/io/index.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar urlParams = new URLSearchParams(window.location.search);\n\nvar auth = exports.auth = function auth() {\n    return new Promise(function (resolve, reject) {\n        setTimeout(function () {\n            resolve('123-345');\n        }, 3000);\n    });\n};\n\nvar getGroups = exports.getGroups = function getGroups() {\n    return new Promise(function (resolve, reject) {\n        setTimeout(function () {\n            var result = [{ 'operatorId': '567' }, { 'operatorId': '897' }];\n            resolve(urlParams.has('oneGroup') ? [result[0]] : result);\n        }, 1500);\n    });\n};\n\nvar getDialog = exports.getDialog = function getDialog() {\n    return new Promise(function (resolve, reject) {\n        setTimeout(function () {\n            resolve({\n                id: '79797-979'\n            });\n        }, 3000);\n    });\n};\n\nvar getHistory = exports.getHistory = function getHistory() {\n    return new Promise(function (resolve, reject) {\n        setTimeout(function () {\n            resolve([{\n                id: '123',\n                type: 'visitor',\n                text: 'yo'\n            }, {\n                id: '456',\n                type: 'operator',\n                text: 'Hi'\n            }]);\n        }, 1000);\n    });\n};\n\nvar mockWebSocket = exports.mockWebSocket = function mockWebSocket() {\n    return function (url) {\n        var socket = {\n            send: function send() {\n                // localStorage.setItem('send')\n            }\n        };\n        try {\n            window.socketMessage = function (data) {\n                socket.onMessage(JSON.parse(data));\n            };\n        } catch (err) {\n            console.error(err);\n        }\n        return socket;\n    };\n};\n\n//# sourceURL=webpack:///./src/io/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/close-frame.js":
+/*!******************************************!*\
+  !*** ./src/store/actions/close-frame.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar CLOSE_FRAME = exports.CLOSE_FRAME = 'close-frame';\n\nvar closeFrame = exports.closeFrame = function closeFrame(envSettings) {\n  return {\n    type: CLOSE_FRAME\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/close-frame.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/destroy-dialog.js":
+/*!*********************************************!*\
+  !*** ./src/store/actions/destroy-dialog.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar DESTROY_DIALOG = exports.DESTROY_DIALOG = 'destroy-dialog';\n\nvar destroyDialog = exports.destroyDialog = function destroyDialog() {\n  return {\n    type: DESTROY_DIALOG\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/destroy-dialog.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/destroy-invitation.js":
+/*!*************************************************!*\
+  !*** ./src/store/actions/destroy-invitation.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar DESTROY_INVITATION = exports.DESTROY_INVITATION = 'destroy-invitation';\n\nvar destroyInvitation = exports.destroyInvitation = function destroyInvitation() {\n  return {\n    type: DESTROY_INVITATION\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/destroy-invitation.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/got-to-dialog.js":
+/*!********************************************!*\
+  !*** ./src/store/actions/got-to-dialog.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar GO_TO_DIALOG = exports.GO_TO_DIALOG = 'go-to-dialog';\n\nvar goToDialog = exports.goToDialog = function goToDialog() {\n  return {\n    type: GO_TO_DIALOG\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/got-to-dialog.js?");
+
+/***/ }),
+
 /***/ "./src/store/actions/index.js":
 /*!************************************!*\
   !*** ./src/store/actions/index.js ***!
@@ -871,19 +931,127 @@ eval("\n\nvar _app = __webpack_require__(/*! ./app */ \"./src/app/index.js\");\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _toggleOpened = __webpack_require__(/*! ./toggle-opened */ \"./src/store/actions/toggle-opened.js\");\n\nObject.defineProperty(exports, 'toggleOpened', {\n  enumerable: true,\n  get: function get() {\n    return _toggleOpened.toggleOpened;\n  }\n});\n\n//# sourceURL=webpack:///./src/store/actions/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _openFrame = __webpack_require__(/*! ./open-frame */ \"./src/store/actions/open-frame.js\");\n\nObject.defineProperty(exports, 'openFrame', {\n  enumerable: true,\n  get: function get() {\n    return _openFrame.openFrame;\n  }\n});\n\nvar _closeFrame = __webpack_require__(/*! ./close-frame */ \"./src/store/actions/close-frame.js\");\n\nObject.defineProperty(exports, 'closeFrame', {\n  enumerable: true,\n  get: function get() {\n    return _closeFrame.closeFrame;\n  }\n});\n\nvar _setDialog = __webpack_require__(/*! ./set-dialog */ \"./src/store/actions/set-dialog.js\");\n\nObject.defineProperty(exports, 'setDialog', {\n  enumerable: true,\n  get: function get() {\n    return _setDialog.setDialog;\n  }\n});\n\nvar _destroyDialog = __webpack_require__(/*! ./destroy-dialog */ \"./src/store/actions/destroy-dialog.js\");\n\nObject.defineProperty(exports, 'destroyDialog', {\n  enumerable: true,\n  get: function get() {\n    return _destroyDialog.destroyDialog;\n  }\n});\n\nvar _startDialog = __webpack_require__(/*! ./start-dialog */ \"./src/store/actions/start-dialog.js\");\n\nObject.defineProperty(exports, 'startDialog', {\n  enumerable: true,\n  get: function get() {\n    return _startDialog.startDialog;\n  }\n});\n\nvar _setGroups = __webpack_require__(/*! ./set-groups */ \"./src/store/actions/set-groups.js\");\n\nObject.defineProperty(exports, 'setGroups', {\n  enumerable: true,\n  get: function get() {\n    return _setGroups.setGroups;\n  }\n});\n\nvar _gotToDialog = __webpack_require__(/*! ./got-to-dialog */ \"./src/store/actions/got-to-dialog.js\");\n\nObject.defineProperty(exports, 'goToDialog', {\n  enumerable: true,\n  get: function get() {\n    return _gotToDialog.goToDialog;\n  }\n});\n\nvar _receiveHistory = __webpack_require__(/*! ./receive-history */ \"./src/store/actions/receive-history.js\");\n\nObject.defineProperty(exports, 'receiveHistory', {\n  enumerable: true,\n  get: function get() {\n    return _receiveHistory.receiveHistory;\n  }\n});\n\nvar _receiveMessage = __webpack_require__(/*! ./receive-message */ \"./src/store/actions/receive-message.js\");\n\nObject.defineProperty(exports, 'receiveMessage', {\n  enumerable: true,\n  get: function get() {\n    return _receiveMessage.receiveMessage;\n  }\n});\n\nvar _startApp = __webpack_require__(/*! ./start-app */ \"./src/store/actions/start-app.js\");\n\nObject.defineProperty(exports, 'startApp', {\n  enumerable: true,\n  get: function get() {\n    return _startApp.startApp;\n  }\n});\n\nvar _setInvitation = __webpack_require__(/*! ./set-invitation */ \"./src/store/actions/set-invitation.js\");\n\nObject.defineProperty(exports, 'setInvitation', {\n  enumerable: true,\n  get: function get() {\n    return _setInvitation.setInvitation;\n  }\n});\n\nvar _destroyInvitation = __webpack_require__(/*! ./destroy-invitation */ \"./src/store/actions/destroy-invitation.js\");\n\nObject.defineProperty(exports, 'destroyInvitation', {\n  enumerable: true,\n  get: function get() {\n    return _destroyInvitation.destroyInvitation;\n  }\n});\n\nvar _setAvailable = __webpack_require__(/*! ./set-available */ \"./src/store/actions/set-available.js\");\n\nObject.defineProperty(exports, 'setAvailable', {\n  enumerable: true,\n  get: function get() {\n    return _setAvailable.setAvailable;\n  }\n});\n\nvar _websocketMessage = __webpack_require__(/*! ./websocket-message */ \"./src/store/actions/websocket-message.js\");\n\nObject.defineProperty(exports, 'websocketMessage', {\n  enumerable: true,\n  get: function get() {\n    return _websocketMessage.websocketMessage;\n  }\n});\n\n//# sourceURL=webpack:///./src/store/actions/index.js?");
 
 /***/ }),
 
-/***/ "./src/store/actions/toggle-opened.js":
+/***/ "./src/store/actions/open-frame.js":
+/*!*****************************************!*\
+  !*** ./src/store/actions/open-frame.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar OPEN_FRAME = exports.OPEN_FRAME = 'open-frame';\n\nvar openFrame = exports.openFrame = function openFrame(envSettings) {\n  return {\n    type: OPEN_FRAME\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/open-frame.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/receive-history.js":
+/*!**********************************************!*\
+  !*** ./src/store/actions/receive-history.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar RECEIVE_HISTORY = exports.RECEIVE_HISTORY = 'receive-history';\n\nvar receiveHistory = exports.receiveHistory = function receiveHistory(payload) {\n  return {\n    type: RECEIVE_HISTORY,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/receive-history.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/receive-message.js":
+/*!**********************************************!*\
+  !*** ./src/store/actions/receive-message.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar RECEIVE_MESSAGE = exports.RECEIVE_MESSAGE = 'receive-message';\n\nvar receiveMessage = exports.receiveMessage = function receiveMessage(payload) {\n  return {\n    type: RECEIVE_MESSAGE,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/receive-message.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/set-available.js":
 /*!********************************************!*\
-  !*** ./src/store/actions/toggle-opened.js ***!
+  !*** ./src/store/actions/set-available.js ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar TOGGLE_OPENED = exports.TOGGLE_OPENED = 'toggle-opened';\n\nvar toggleOpened = exports.toggleOpened = function toggleOpened(envSettings) {\n  return {\n    type: TOGGLE_OPENED\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/toggle-opened.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar SET_AVAILABLE = exports.SET_AVAILABLE = 'set-available';\n\nvar setAvailable = exports.setAvailable = function setAvailable(payload) {\n  return {\n    type: SET_AVAILABLE,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/set-available.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/set-dialog.js":
+/*!*****************************************!*\
+  !*** ./src/store/actions/set-dialog.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar SET_DIALOG = exports.SET_DIALOG = 'set-dialog';\n\nvar setDialog = exports.setDialog = function setDialog(payload) {\n  return {\n    type: SET_DIALOG,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/set-dialog.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/set-groups.js":
+/*!*****************************************!*\
+  !*** ./src/store/actions/set-groups.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar SET_GROUPS = exports.SET_GROUPS = 'set-groups';\n\nvar setGroups = exports.setGroups = function setGroups(payload) {\n  return {\n    type: SET_GROUPS,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/set-groups.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/set-invitation.js":
+/*!*********************************************!*\
+  !*** ./src/store/actions/set-invitation.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar SET_INVITATION = exports.SET_INVITATION = 'set-invitation';\n\nvar setInvitation = exports.setInvitation = function setInvitation(payload) {\n  return {\n    type: SET_INVITATION,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/set-invitation.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/start-app.js":
+/*!****************************************!*\
+  !*** ./src/store/actions/start-app.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar START_APP = exports.START_APP = 'start-app';\n\nvar startApp = exports.startApp = function startApp() {\n  return {\n    type: START_APP\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/start-app.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/start-dialog.js":
+/*!*******************************************!*\
+  !*** ./src/store/actions/start-dialog.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar START_DIALOG = exports.START_DIALOG = 'start-dialog';\n\nvar startDialog = exports.startDialog = function startDialog() {\n  return {\n    type: START_DIALOG\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/start-dialog.js?");
+
+/***/ }),
+
+/***/ "./src/store/actions/websocket-message.js":
+/*!************************************************!*\
+  !*** ./src/store/actions/websocket-message.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar WEBSOCKET_MESSAGE = exports.WEBSOCKET_MESSAGE = 'websocket-message';\n\nvar websocketMessage = exports.websocketMessage = function websocketMessage(payload) {\n  return {\n    type: WEBSOCKET_MESSAGE,\n    payload: payload\n  };\n};\n\n//# sourceURL=webpack:///./src/store/actions/websocket-message.js?");
 
 /***/ }),
 
@@ -895,7 +1063,199 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.getState = exports.store = undefined;\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _reduxLogger = __webpack_require__(/*! redux-logger */ \"./node_modules/redux-logger/dist/redux-logger.js\");\n\nvar _reducers = __webpack_require__(/*! ./reducers */ \"./src/store/reducers/index.js\");\n\nvar store = exports.store = (0, _redux.createStore)(_reducers.reducers, (0, _redux.compose)((0, _redux.applyMiddleware)((0, _reduxLogger.createLogger)())));\n\nvar getState = exports.getState = function getState() {\n  return store.getState();\n};\n\n//# sourceURL=webpack:///./src/store/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.store = undefined;\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _reduxLogger = __webpack_require__(/*! redux-logger */ \"./node_modules/redux-logger/dist/redux-logger.js\");\n\nvar _reducers = __webpack_require__(/*! ./reducers */ \"./src/store/reducers/index.js\");\n\nvar _middlewares = __webpack_require__(/*! ./middlewares */ \"./src/store/middlewares/index.js\");\n\nvar middlewares = _interopRequireWildcard(_middlewares);\n\nvar _persistState = __webpack_require__(/*! ./persist-state */ \"./src/store/persist-state.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;\n\nvar store = exports.store = (0, _redux.createStore)(_reducers.reducers, (0, _persistState.loadState)(), composeEnhancers((0, _redux.applyMiddleware)(middlewares.dialogMiddleware, middlewares.messagesMiddleware, middlewares.invitationMiddleware, middlewares.availableMiddleware, middlewares.offlineMiddleware, middlewares.websocketMiddleware, (0, _reduxLogger.createLogger)())));\nvar prevState = store.getState();\nstore.subscribe(function () {\n  var state = store.getState();\n  if (prevState !== state) {\n    (0, _persistState.saveState)(store.getState());\n  }\n});\n\n(0, _persistState.subscribePersistState)(function () {\n  store.dispatch({ type: 'sync-tabs' });\n});\n\n//# sourceURL=webpack:///./src/store/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/available-middleware.js":
+/*!*******************************************************!*\
+  !*** ./src/store/middlewares/available-middleware.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.availableMiddleware = undefined;\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _websocketMessage = __webpack_require__(/*! ../actions/websocket-message */ \"./src/store/actions/websocket-message.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar availableMiddleware = exports.availableMiddleware = function availableMiddleware(store) {\n  return function (next) {\n    return function (action) {\n      var state = store.getState();\n      switch (action.type) {\n        case _websocketMessage.WEBSOCKET_MESSAGE:\n          {\n            if (action.payload.type === 'available') {\n              store.dispatch(actionsCreators.setAvailable(action.payload.data));\n              break;\n            }\n            return next(action);\n          }\n        default:\n          return next(action);\n      }\n    };\n  };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/available-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/dialog-middleware.js":
+/*!****************************************************!*\
+  !*** ./src/store/middlewares/dialog-middleware.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.dialogMiddleware = undefined;\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _startDialog = __webpack_require__(/*! ../actions/start-dialog */ \"./src/store/actions/start-dialog.js\");\n\nvar _io = __webpack_require__(/*! ../../io */ \"./src/io/index.js\");\n\nvar _selectors = __webpack_require__(/*! ../reducers/settings/selectors */ \"./src/store/reducers/settings/selectors.js\");\n\nvar _selectors2 = __webpack_require__(/*! ../reducers/dialog/selectors */ \"./src/store/reducers/dialog/selectors.js\");\n\nvar _selectors3 = __webpack_require__(/*! ../reducers/groups/selectors */ \"./src/store/reducers/groups/selectors.js\");\n\nvar _gotToDialog = __webpack_require__(/*! ../actions/got-to-dialog */ \"./src/store/actions/got-to-dialog.js\");\n\nvar _selectors4 = __webpack_require__(/*! ../reducers/available/selectors */ \"./src/store/reducers/available/selectors.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar dialogMiddleware = exports.dialogMiddleware = function dialogMiddleware(store) {\n  return function (next) {\n    return function (action) {\n      var state = store.getState();\n      var settings = (0, _selectors.getSettings)(state);\n      var isDialog = (0, _selectors2.isDialogAvailable)(state);\n      switch (action.type) {\n        case _startDialog.START_DIALOG:\n          {\n            var isAvailableChat = (0, _selectors4.isAvailable)(store.getState());\n            if (isAvailableChat) {\n              store.dispatch(actionsCreators.openFrame());\n              var groups = void 0;\n              (0, _io.getGroups)().then(function (data) {\n                groups = data;\n                var isOneGroup = groups.length === 1;\n                if (isOneGroup) {\n                  return (0, _io.getDialog)();\n                }\n                store.dispatch(actionsCreators.setGroups(groups));\n              }).then(function (dialogId) {\n                if (dialogId) {\n                  store.dispatch(actionsCreators.setGroups(groups));\n                  store.dispatch(actionsCreators.setDialog(dialogId));\n                }\n              });\n              break;\n            }\n            return next(action);\n          }\n        case _gotToDialog.GO_TO_DIALOG:\n          {\n            (0, _io.getDialog)().then(function (dialogId) {\n              if (dialogId) {\n                store.dispatch(actionsCreators.setDialog(dialogId));\n              }\n            });\n            break;\n          }\n        default:\n          return next(action);\n      }\n    };\n  };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/dialog-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/index.js":
+/*!****************************************!*\
+  !*** ./src/store/middlewares/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _dialogMiddleware = __webpack_require__(/*! ./dialog-middleware */ \"./src/store/middlewares/dialog-middleware.js\");\n\nObject.defineProperty(exports, 'dialogMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _dialogMiddleware.dialogMiddleware;\n  }\n});\n\nvar _messagesMiddleware = __webpack_require__(/*! ./messages-middleware */ \"./src/store/middlewares/messages-middleware.js\");\n\nObject.defineProperty(exports, 'messagesMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _messagesMiddleware.messagesMiddleware;\n  }\n});\n\nvar _invitationMiddleware = __webpack_require__(/*! ./invitation-middleware */ \"./src/store/middlewares/invitation-middleware.js\");\n\nObject.defineProperty(exports, 'invitationMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _invitationMiddleware.invitationMiddleware;\n  }\n});\n\nvar _availableMiddleware = __webpack_require__(/*! ./available-middleware */ \"./src/store/middlewares/available-middleware.js\");\n\nObject.defineProperty(exports, 'availableMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _availableMiddleware.availableMiddleware;\n  }\n});\n\nvar _websocketMiddleware = __webpack_require__(/*! ./websocket-middleware */ \"./src/store/middlewares/websocket-middleware.js\");\n\nObject.defineProperty(exports, 'websocketMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _websocketMiddleware.websocketMiddleware;\n  }\n});\n\nvar _offlineMiddleware = __webpack_require__(/*! ./offline-middleware */ \"./src/store/middlewares/offline-middleware.js\");\n\nObject.defineProperty(exports, 'offlineMiddleware', {\n  enumerable: true,\n  get: function get() {\n    return _offlineMiddleware.offlineMiddleware;\n  }\n});\n\n//# sourceURL=webpack:///./src/store/middlewares/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/invitation-middleware.js":
+/*!********************************************************!*\
+  !*** ./src/store/middlewares/invitation-middleware.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.invitationMiddleware = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _startApp = __webpack_require__(/*! ../actions/start-app */ \"./src/store/actions/start-app.js\");\n\nvar _setInvitation = __webpack_require__(/*! ../actions/set-invitation */ \"./src/store/actions/set-invitation.js\");\n\nvar _closeFrame = __webpack_require__(/*! ../actions/close-frame */ \"./src/store/actions/close-frame.js\");\n\nvar _selectors = __webpack_require__(/*! ../reducers/application/selectors */ \"./src/store/reducers/application/selectors.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Invitation = function () {\n    function Invitation() {\n        _classCallCheck(this, Invitation);\n    }\n\n    _createClass(Invitation, [{\n        key: 'init',\n        value: function init(action) {\n            setTimeout(function () {\n                action('invId');\n            }, 4000);\n        }\n    }]);\n\n    return Invitation;\n}();\n\nvar invitation = new Invitation();\n\nvar invitationMiddleware = exports.invitationMiddleware = function invitationMiddleware(store) {\n    return function (next) {\n        return function (action) {\n            var state = store.getState();\n            switch (action.type) {\n                case _startApp.START_APP:\n                    {\n                        invitation.init(function (invitationId) {\n                            var isOpened = (0, _selectors.isOpenedFrame)(store.getState());\n                            if (!isOpened) {\n                                store.dispatch(actionsCreators.setInvitation(invitationId));\n                            }\n                        });\n                        return next(action);\n                    }\n                case _setInvitation.SET_INVITATION:\n                    {\n                        store.dispatch(actionsCreators.openFrame());\n                        return next(action);\n                    }\n                case _closeFrame.CLOSE_FRAME:\n                    {\n                        store.dispatch(actionsCreators.destroyInvitation());\n                        return next(action);\n                    }\n                default:\n                    return next(action);\n            }\n\n            return next(action);\n        };\n    };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/invitation-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/messages-middleware.js":
+/*!******************************************************!*\
+  !*** ./src/store/middlewares/messages-middleware.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.messagesMiddleware = undefined;\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _io = __webpack_require__(/*! ../../io */ \"./src/io/index.js\");\n\nvar _setDialog = __webpack_require__(/*! ../actions/set-dialog */ \"./src/store/actions/set-dialog.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar messagesMiddleware = exports.messagesMiddleware = function messagesMiddleware(store) {\n  return function (next) {\n    return function (action) {\n      var state = store.getState();\n      switch (action.type) {\n        case _setDialog.SET_DIALOG:\n          {\n            (0, _io.getHistory)().then(function (history) {\n              store.dispatch(actionsCreators.receiveHistory(history));\n            });\n            return next(action);\n          }\n        default:\n          return next(action);\n      }\n    };\n  };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/messages-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/offline-middleware.js":
+/*!*****************************************************!*\
+  !*** ./src/store/middlewares/offline-middleware.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.offlineMiddleware = undefined;\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _startDialog = __webpack_require__(/*! ../actions/start-dialog */ \"./src/store/actions/start-dialog.js\");\n\nvar _io = __webpack_require__(/*! ../../io */ \"./src/io/index.js\");\n\nvar _selectors = __webpack_require__(/*! ../reducers/settings/selectors */ \"./src/store/reducers/settings/selectors.js\");\n\nvar _selectors2 = __webpack_require__(/*! ../reducers/dialog/selectors */ \"./src/store/reducers/dialog/selectors.js\");\n\nvar _selectors3 = __webpack_require__(/*! ../reducers/groups/selectors */ \"./src/store/reducers/groups/selectors.js\");\n\nvar _gotToDialog = __webpack_require__(/*! ../actions/got-to-dialog */ \"./src/store/actions/got-to-dialog.js\");\n\nvar _selectors4 = __webpack_require__(/*! ../reducers/available/selectors */ \"./src/store/reducers/available/selectors.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar offlineMiddleware = exports.offlineMiddleware = function offlineMiddleware(store) {\n  return function (next) {\n    return function (action) {\n      var state = store.getState();\n      var settings = (0, _selectors.getSettings)(state);\n      var isDialog = (0, _selectors2.isDialogAvailable)(state);\n      switch (action.type) {\n        case _startDialog.START_DIALOG:\n          {\n            var isAvailableChat = (0, _selectors4.isAvailable)(store.getState());\n            if (!isAvailableChat) {\n              store.dispatch(actionsCreators.openFrame());\n              break;\n            }\n            return next(action);\n          }\n        default:\n          return next(action);\n      }\n    };\n  };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/offline-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/middlewares/websocket-middleware.js":
+/*!*******************************************************!*\
+  !*** ./src/store/middlewares/websocket-middleware.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.websocketMiddleware = undefined;\n\nvar _actions = __webpack_require__(/*! ../actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _startApp = __webpack_require__(/*! ../actions/start-app */ \"./src/store/actions/start-app.js\");\n\nvar _io = __webpack_require__(/*! ../../io */ \"./src/io/index.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar runSocket = (0, _io.mockWebSocket)();\n\nvar websocketMiddleware = exports.websocketMiddleware = function websocketMiddleware(store) {\n  return function (next) {\n    return function (action) {\n      var state = store.getState();\n      switch (action.type) {\n        case _startApp.START_APP:\n          {\n            var socket = runSocket('http://server');\n            socket.onMessage = function (data) {\n              store.dispatch(actionsCreators.websocketMessage(data));\n            };\n            return next(action);\n          }\n        default:\n          return next(action);\n      }\n    };\n  };\n};\n\n//# sourceURL=webpack:///./src/store/middlewares/websocket-middleware.js?");
+
+/***/ }),
+
+/***/ "./src/store/persist-state.js":
+/*!************************************!*\
+  !*** ./src/store/persist-state.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar loadState = exports.loadState = function loadState() {\n    try {\n        var serializedState = localStorage.getItem('state');\n        if (serializedState === null) {\n            return undefined;\n        }\n        return JSON.parse(serializedState);\n    } catch (err) {\n        return undefined;\n    }\n};\n\nvar saveState = exports.saveState = function saveState(state) {\n    try {\n        var serializedState = JSON.stringify(state);\n        localStorage.setItem('state', serializedState);\n    } catch (err) {}\n};\n\nvar subscribePersistState = exports.subscribePersistState = function subscribePersistState(handler) {\n    try {\n        window.addEventListener('storage', function (e) {\n            if (e.key === 'state' && e.newValue) {\n                handler();\n            }\n        }, false);\n    } catch (err) {}\n};\n\n//# sourceURL=webpack:///./src/store/persist-state.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/application/index.js":
+/*!*************************************************!*\
+  !*** ./src/store/reducers/application/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.application = application;\n\nvar _openFrame = __webpack_require__(/*! ../../actions/open-frame */ \"./src/store/actions/open-frame.js\");\n\nvar _closeFrame = __webpack_require__(/*! ../../actions/close-frame */ \"./src/store/actions/close-frame.js\");\n\nvar initialState = {\n  opened: false\n};\n\nfunction application() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments[1];\n\n  switch (action.type) {\n    case _openFrame.OPEN_FRAME:\n      return {\n        ...state,\n        opened: true\n      };\n    case _closeFrame.CLOSE_FRAME:\n      return {\n        ...state,\n        opened: false\n      };\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/application/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/application/selectors.js":
+/*!*****************************************************!*\
+  !*** ./src/store/reducers/application/selectors.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar isOpenedFrame = exports.isOpenedFrame = function isOpenedFrame(state) {\n    return Boolean(state.application.opened);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/application/selectors.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/available/index.js":
+/*!***********************************************!*\
+  !*** ./src/store/reducers/available/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.available = available;\n\nvar _setAvailable = __webpack_require__(/*! ../../actions/set-available */ \"./src/store/actions/set-available.js\");\n\nvar initialState = true;\n\nfunction available() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments[1];\n\n  switch (action.type) {\n    case _setAvailable.SET_AVAILABLE:\n      return action.payload;\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/available/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/available/selectors.js":
+/*!***************************************************!*\
+  !*** ./src/store/reducers/available/selectors.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar isAvailable = exports.isAvailable = function isAvailable(state) {\n    return Boolean(state.available);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/available/selectors.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/dialog/index.js":
+/*!********************************************!*\
+  !*** ./src/store/reducers/dialog/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.dialog = dialog;\n\nvar _setDialog = __webpack_require__(/*! ../../actions/set-dialog */ \"./src/store/actions/set-dialog.js\");\n\nvar _destroyDialog = __webpack_require__(/*! ../../actions/destroy-dialog */ \"./src/store/actions/destroy-dialog.js\");\n\nvar initialState = {\n  id: ''\n};\n\nfunction dialog() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments[1];\n\n  switch (action.type) {\n    case _setDialog.SET_DIALOG:\n      return {\n        ...state,\n        id: action.payload.id\n      };\n    case _destroyDialog.DESTROY_DIALOG:\n      return {\n        ...state,\n        id: ''\n      };\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/dialog/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/dialog/selectors.js":
+/*!************************************************!*\
+  !*** ./src/store/reducers/dialog/selectors.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar isDialogAvailable = exports.isDialogAvailable = function isDialogAvailable(state) {\n    return Boolean(state.dialog.id);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/dialog/selectors.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/groups/index.js":
+/*!********************************************!*\
+  !*** ./src/store/reducers/groups/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.groups = groups;\n\nvar _setGroups = __webpack_require__(/*! ../../actions/set-groups */ \"./src/store/actions/set-groups.js\");\n\nvar initialState = [];\n\nfunction groups() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments[1];\n\n  switch (action.type) {\n    case _setGroups.SET_GROUPS:\n      return action.payload;\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/groups/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/groups/selectors.js":
+/*!************************************************!*\
+  !*** ./src/store/reducers/groups/selectors.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar isGroupsAvailable = exports.isGroupsAvailable = function isGroupsAvailable(state) {\n    return Boolean(state.groups.length);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/groups/selectors.js?");
 
 /***/ }),
 
@@ -907,7 +1267,79 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.reducers = undefined;\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar appReducers = (0, _redux.combineReducers)({});\n\nvar initialState = appReducers({}, {});\n\nvar reducers = exports.reducers = function reducers(state, action) {\n  // if ('reset-action') {\n  //   state = initialState;\n  // }\n  return appReducers(state, action);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/index.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.reducers = undefined;\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _application = __webpack_require__(/*! ../reducers/application */ \"./src/store/reducers/application/index.js\");\n\nvar _dialog = __webpack_require__(/*! ../reducers/dialog */ \"./src/store/reducers/dialog/index.js\");\n\nvar _groups = __webpack_require__(/*! ../reducers/groups */ \"./src/store/reducers/groups/index.js\");\n\nvar _settings = __webpack_require__(/*! ../reducers/settings */ \"./src/store/reducers/settings/index.js\");\n\nvar _messages = __webpack_require__(/*! ../reducers/messages */ \"./src/store/reducers/messages/index.js\");\n\nvar _invitation = __webpack_require__(/*! ../reducers/invitation */ \"./src/store/reducers/invitation/index.js\");\n\nvar _available = __webpack_require__(/*! ../reducers/available */ \"./src/store/reducers/available/index.js\");\n\nvar _persistState = __webpack_require__(/*! ../persist-state */ \"./src/store/persist-state.js\");\n\nvar appReducers = (0, _redux.combineReducers)({\n  application: _application.application,\n  dialog: _dialog.dialog,\n  groups: _groups.groups,\n  messages: _messages.messages,\n  invitation: _invitation.invitation,\n  available: _available.available,\n  settings: _settings.settings\n});\n\nvar initialState = appReducers({}, {});\n\nvar reducers = exports.reducers = function reducers(state, action) {\n  // if ('reset-action') {\n  //   state = initialState;\n  // }\n\n  if (action.type == 'sync-tabs') {\n    state = (0, _persistState.loadState)();\n  }\n\n  return appReducers(state, action);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/invitation/index.js":
+/*!************************************************!*\
+  !*** ./src/store/reducers/invitation/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.invitation = invitation;\n\nvar _setInvitation = __webpack_require__(/*! ../../actions/set-invitation */ \"./src/store/actions/set-invitation.js\");\n\nvar _destroyInvitation = __webpack_require__(/*! ../../actions/destroy-invitation */ \"./src/store/actions/destroy-invitation.js\");\n\nvar initialState = {\n    current: ''\n};\n\nfunction invitation() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n    var action = arguments[1];\n\n    switch (action.type) {\n        case _setInvitation.SET_INVITATION:\n            return {\n                ...state,\n                current: action.payload\n            };\n        case _destroyInvitation.DESTROY_INVITATION:\n            return {\n                ...state,\n                current: ''\n            };\n        default:\n            return state;\n    }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/invitation/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/invitation/selectors.js":
+/*!****************************************************!*\
+  !*** ./src/store/reducers/invitation/selectors.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar isInvitationRunned = exports.isInvitationRunned = function isInvitationRunned(state) {\n    return Boolean(state.invitation.current);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/invitation/selectors.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/messages/index.js":
+/*!**********************************************!*\
+  !*** ./src/store/reducers/messages/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.normalizeData = undefined;\nexports.messages = messages;\n\nvar _receiveMessage = __webpack_require__(/*! ../../actions/receive-message */ \"./src/store/actions/receive-message.js\");\n\nvar _receiveHistory = __webpack_require__(/*! ../../actions/receive-history */ \"./src/store/actions/receive-history.js\");\n\nvar initialState = {};\n\nvar normalizeData = exports.normalizeData = function normalizeData(data, key) {\n    return data.reduce(function (acc, item) {\n        acc[item[key]] = item;\n        return acc;\n    }, {});\n};\n\nfunction messages() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n    var action = arguments[1];\n\n    switch (action.type) {\n        case _receiveMessage.RECEIVE_MESSAGE:\n            return {\n                ...state,\n                ...normalizeData([action.payload], 'id')\n            };\n        case _receiveHistory.RECEIVE_HISTORY:\n            return {\n                ...state,\n                ...normalizeData(action.payload, 'id')\n            };\n        default:\n            return state;\n    }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/messages/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/messages/selectors.js":
+/*!**************************************************!*\
+  !*** ./src/store/reducers/messages/selectors.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar getMessages = exports.getMessages = function getMessages(state) {\n    return Object.values(state.messages);\n};\n\n//# sourceURL=webpack:///./src/store/reducers/messages/selectors.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/settings/index.js":
+/*!**********************************************!*\
+  !*** ./src/store/reducers/settings/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.settings = settings;\n\nvar _setGroups = __webpack_require__(/*! ../../actions/set-groups */ \"./src/store/actions/set-groups.js\");\n\nvar initialState = {\n  welcomeEnabled: false\n};\n\nfunction settings() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments[1];\n\n  switch (action.type) {\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/store/reducers/settings/index.js?");
+
+/***/ }),
+
+/***/ "./src/store/reducers/settings/selectors.js":
+/*!**************************************************!*\
+  !*** ./src/store/reducers/settings/selectors.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar getSettings = exports.getSettings = function getSettings(state) {\n    return state.settings;\n};\n\n//# sourceURL=webpack:///./src/store/reducers/settings/selectors.js?");
 
 /***/ }),
 
@@ -919,7 +1351,91 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ../store/actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar App = function (_React$PureComponent) {\n  _inherits(App, _React$PureComponent);\n\n  function App(props) {\n    _classCallCheck(this, App);\n\n    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));\n  }\n\n  _createClass(App, [{\n    key: 'render',\n    value: function render() {\n      var isOpened = this.props.isOpened;\n\n      return React.createElement(\n        'div',\n        null,\n        isOpened\n      );\n    }\n  }]);\n\n  return App;\n}(React.PureComponent);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    isOpened: state.isOpened\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    actionsCreator: (0, _redux.bindActionCreators)(actionsCreators, dispatch)\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);\n\n//# sourceURL=webpack:///./src/ui/app.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ../store/actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _frame = __webpack_require__(/*! ../ui/containers/frame */ \"./src/ui/containers/frame/index.js\");\n\nvar _frame2 = _interopRequireDefault(_frame);\n\nvar _label = __webpack_require__(/*! ../ui/components/label */ \"./src/ui/components/label/index.js\");\n\nvar _selectors = __webpack_require__(/*! ../store/reducers/application/selectors */ \"./src/store/reducers/application/selectors.js\");\n\nvar _selectors2 = __webpack_require__(/*! ../store/reducers/available/selectors */ \"./src/store/reducers/available/selectors.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar App = function (_React$PureComponent) {\n  _inherits(App, _React$PureComponent);\n\n  function App(props) {\n    _classCallCheck(this, App);\n\n    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));\n  }\n\n  _createClass(App, [{\n    key: 'componentDidMount',\n    value: function componentDidMount() {\n      this.props.actionsCreators.startApp();\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n      var _props = this.props,\n          isOpened = _props.isOpened,\n          isAvailable = _props.isAvailable;\n\n      return React.createElement(\n        React.Fragment,\n        null,\n        isOpened ? React.createElement(_frame2.default, null) : React.createElement(_label.Label, {\n          text: isAvailable ? 'Chat' : 'Offline',\n          onClick: this.props.actionsCreators.startDialog\n        })\n      );\n    }\n  }]);\n\n  return App;\n}(React.PureComponent);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    isOpened: (0, _selectors.isOpenedFrame)(state),\n    isAvailable: (0, _selectors2.isAvailable)(state)\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    actionsCreators: (0, _redux.bindActionCreators)(actionsCreators, dispatch)\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);\n\n//# sourceURL=webpack:///./src/ui/app.js?");
+
+/***/ }),
+
+/***/ "./src/ui/components/chat/index.js":
+/*!*****************************************!*\
+  !*** ./src/ui/components/chat/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.Chat = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Chat = exports.Chat = function (_React$PureComponent) {\n  _inherits(Chat, _React$PureComponent);\n\n  function Chat(props) {\n    _classCallCheck(this, Chat);\n\n    return _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));\n  }\n\n  _createClass(Chat, [{\n    key: 'render',\n    value: function render() {\n      var messages = this.props.messages;\n\n      return React.createElement(\n        React.Fragment,\n        null,\n        React.createElement(\n          'div',\n          { style: { padding: '10px 15px' } },\n          messages.map(function (msg) {\n            return React.createElement(\n              'div',\n              { key: msg.id, style: { textAlign: msg.type === 'operator' ? 'left' : 'right' } },\n              msg.text\n            );\n          })\n        ),\n        this.props.offlineHandler ? React.createElement('button', { onClick: this.props.offlineHandler }) : null\n      );\n    }\n  }]);\n\n  return Chat;\n}(React.PureComponent);\n\n//# sourceURL=webpack:///./src/ui/components/chat/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/components/frame-header/index.js":
+/*!*************************************************!*\
+  !*** ./src/ui/components/frame-header/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.FrameHeader = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar FrameHeader = exports.FrameHeader = function (_React$PureComponent) {\n  _inherits(FrameHeader, _React$PureComponent);\n\n  function FrameHeader(props) {\n    _classCallCheck(this, FrameHeader);\n\n    return _possibleConstructorReturn(this, (FrameHeader.__proto__ || Object.getPrototypeOf(FrameHeader)).call(this, props));\n  }\n\n  _createClass(FrameHeader, [{\n    key: 'render',\n    value: function render() {\n      var styles = {\n        background: '#286efa',\n        width: '100%',\n        height: '40px',\n        overflow: 'hidden',\n        color: '#fff',\n        boxShadow: '0 1px 4px rgba(0,0,0,.2)'\n      };\n\n      var buttonStyles = {\n        background: '#fff',\n        border: '0',\n        borderRadius: '50%',\n        padding: '2px 5px',\n        margin: '0',\n        cursor: 'pointer',\n        position: 'absolute',\n        right: '12px',\n        top: '10px'\n      };\n      return React.createElement(\n        'div',\n        { style: styles, onClick: this.props.onClick },\n        React.createElement(\n          'button',\n          { style: buttonStyles, type: 'button', onClick: this.props.closeHandler },\n          'X'\n        )\n      );\n    }\n  }]);\n\n  return FrameHeader;\n}(React.PureComponent);\n\n//# sourceURL=webpack:///./src/ui/components/frame-header/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/components/frame-wrapper/index.js":
+/*!**************************************************!*\
+  !*** ./src/ui/components/frame-wrapper/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.FrameWrapper = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _frameHeader = __webpack_require__(/*! ../frame-header */ \"./src/ui/components/frame-header/index.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar FrameWrapper = exports.FrameWrapper = function (_React$PureComponent) {\n  _inherits(FrameWrapper, _React$PureComponent);\n\n  function FrameWrapper(props) {\n    _classCallCheck(this, FrameWrapper);\n\n    return _possibleConstructorReturn(this, (FrameWrapper.__proto__ || Object.getPrototypeOf(FrameWrapper)).call(this, props));\n  }\n\n  _createClass(FrameWrapper, [{\n    key: 'render',\n    value: function render() {\n      var styles = {\n        position: 'fixed',\n        width: '370px',\n        left: '50%',\n        transform: 'translateX(-50%)',\n        height: 'calc(100% - 20px - 75px - 20px)',\n        bottom: 'calc(20px + 75px)',\n        borderRadius: '5px',\n        overflow: 'hidden',\n        boxShadow: '0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)',\n        color: '#000'\n      };\n\n      return React.createElement(\n        'div',\n        { style: styles, onClick: this.props.onClick },\n        React.createElement(_frameHeader.FrameHeader, { closeHandler: this.props.closeHandler }),\n        this.props.children\n      );\n    }\n  }]);\n\n  return FrameWrapper;\n}(React.PureComponent);\n\n//# sourceURL=webpack:///./src/ui/components/frame-wrapper/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/components/label/index.js":
+/*!******************************************!*\
+  !*** ./src/ui/components/label/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.Label = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Label = exports.Label = function (_React$PureComponent) {\n  _inherits(Label, _React$PureComponent);\n\n  function Label(props) {\n    _classCallCheck(this, Label);\n\n    return _possibleConstructorReturn(this, (Label.__proto__ || Object.getPrototypeOf(Label)).call(this, props));\n  }\n\n  _createClass(Label, [{\n    key: 'render',\n    value: function render() {\n      var styles = {\n        position: 'fixed',\n        background: '#286efa',\n        width: '80px',\n        height: '80px',\n        left: '50%',\n        transform: 'translateX(-50%)',\n        bottom: '5px',\n        borderRadius: '50%',\n        overflow: 'hidden',\n        boxShadow: '0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)',\n        cursor: 'pointer',\n        lineHeight: '80px',\n        textAlign: 'center',\n        color: '#fff'\n      };\n\n      return React.createElement(\n        'div',\n        { style: styles, onClick: this.props.onClick },\n        this.props.text\n      );\n    }\n  }]);\n\n  return Label;\n}(React.PureComponent);\n\n//# sourceURL=webpack:///./src/ui/components/label/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/containers/dialog/index.js":
+/*!*******************************************!*\
+  !*** ./src/ui/containers/dialog/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ../../../store/actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _selectors = __webpack_require__(/*! ../../../store/reducers/messages/selectors */ \"./src/store/reducers/messages/selectors.js\");\n\nvar _chat = __webpack_require__(/*! ../../components/chat */ \"./src/ui/components/chat/index.js\");\n\nvar _welcome = __webpack_require__(/*! ../../containers/welcome */ \"./src/ui/containers/welcome/index.js\");\n\nvar _welcome2 = _interopRequireDefault(_welcome);\n\nvar _selectors2 = __webpack_require__(/*! ../../../store/reducers/dialog/selectors */ \"./src/store/reducers/dialog/selectors.js\");\n\nvar _selectors3 = __webpack_require__(/*! ../../../store/reducers/available/selectors */ \"./src/store/reducers/available/selectors.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Dialog = function (_React$PureComponent) {\n  _inherits(Dialog, _React$PureComponent);\n\n  function Dialog(props) {\n    _classCallCheck(this, Dialog);\n\n    return _possibleConstructorReturn(this, (Dialog.__proto__ || Object.getPrototypeOf(Dialog)).call(this, props));\n  }\n\n  _createClass(Dialog, [{\n    key: 'render',\n    value: function render() {\n      var _props = this.props,\n          isDialogAvailable = _props.isDialogAvailable,\n          messages = _props.messages,\n          isOnline = _props.isOnline;\n\n      return React.createElement(\n        React.Fragment,\n        null,\n        isDialogAvailable ? React.createElement(_chat.Chat, {\n          messages: messages,\n          offlineHandler: !isOnline ? this.props.actionsCreator.destroyDialog : null\n        }) : React.createElement(_welcome2.default, null)\n      );\n    }\n  }]);\n\n  return Dialog;\n}(React.PureComponent);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    isDialogAvailable: (0, _selectors2.isDialogAvailable)(state),\n    messages: (0, _selectors.getMessages)(state),\n    isOnline: (0, _selectors3.isAvailable)(state)\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    actionsCreator: (0, _redux.bindActionCreators)(actionsCreators, dispatch)\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Dialog);\n\n//# sourceURL=webpack:///./src/ui/containers/dialog/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/containers/frame/index.js":
+/*!******************************************!*\
+  !*** ./src/ui/containers/frame/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ../../../store/actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nvar _frameWrapper = __webpack_require__(/*! ../../components/frame-wrapper */ \"./src/ui/components/frame-wrapper/index.js\");\n\nvar _dialog = __webpack_require__(/*! ../../containers/dialog */ \"./src/ui/containers/dialog/index.js\");\n\nvar _dialog2 = _interopRequireDefault(_dialog);\n\nvar _selectors = __webpack_require__(/*! ../../../store/reducers/dialog/selectors */ \"./src/store/reducers/dialog/selectors.js\");\n\nvar _selectors2 = __webpack_require__(/*! ../../../store/reducers/groups/selectors */ \"./src/store/reducers/groups/selectors.js\");\n\nvar _selectors3 = __webpack_require__(/*! ../../../store/reducers/invitation/selectors */ \"./src/store/reducers/invitation/selectors.js\");\n\nvar _selectors4 = __webpack_require__(/*! ../../../store/reducers/available/selectors */ \"./src/store/reducers/available/selectors.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Frame = function (_React$PureComponent) {\n  _inherits(Frame, _React$PureComponent);\n\n  function Frame(props) {\n    _classCallCheck(this, Frame);\n\n    return _possibleConstructorReturn(this, (Frame.__proto__ || Object.getPrototypeOf(Frame)).call(this, props));\n  }\n\n  _createClass(Frame, [{\n    key: 'render',\n    value: function render() {\n      var _props = this.props,\n          isGroupsAvailable = _props.isGroupsAvailable,\n          isDialogAvailable = _props.isDialogAvailable,\n          isInvitationRunned = _props.isInvitationRunned,\n          isOnline = _props.isOnline;\n\n\n      return React.createElement(\n        _frameWrapper.FrameWrapper,\n        { closeHandler: this.props.actionCreators.closeFrame },\n        isInvitationRunned ? React.createElement(\n          'div',\n          null,\n          'Invite'\n        ) : !isOnline && !isDialogAvailable ? React.createElement(\n          'div',\n          null,\n          'Offline'\n        ) : isGroupsAvailable ? React.createElement(_dialog2.default, null) : 'spiner'\n      );\n    }\n  }]);\n\n  return Frame;\n}(React.PureComponent);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    isGroupsAvailable: (0, _selectors2.isGroupsAvailable)(state),\n    isDialogAvailable: (0, _selectors.isDialogAvailable)(state),\n    isInvitationRunned: (0, _selectors3.isInvitationRunned)(state),\n    isOnline: (0, _selectors4.isAvailable)(state)\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    actionCreators: (0, _redux.bindActionCreators)(actionsCreators, dispatch)\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Frame);\n\n//# sourceURL=webpack:///./src/ui/containers/frame/index.js?");
+
+/***/ }),
+
+/***/ "./src/ui/containers/welcome/index.js":
+/*!********************************************!*\
+  !*** ./src/ui/containers/welcome/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar React = _interopRequireWildcard(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n\nvar _actions = __webpack_require__(/*! ../../../store/actions */ \"./src/store/actions/index.js\");\n\nvar actionsCreators = _interopRequireWildcard(_actions);\n\nvar _redux = __webpack_require__(/*! redux */ \"./node_modules/redux/es/index.js\");\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Welcome = function (_React$PureComponent) {\n  _inherits(Welcome, _React$PureComponent);\n\n  function Welcome(props) {\n    _classCallCheck(this, Welcome);\n\n    return _possibleConstructorReturn(this, (Welcome.__proto__ || Object.getPrototypeOf(Welcome)).call(this, props));\n  }\n\n  _createClass(Welcome, [{\n    key: 'render',\n    value: function render() {\n      var inputStyles = {\n        display: 'block',\n        width: '100%',\n        height: '38px',\n        padding: '7px 35px 7px 12px',\n        boxSizing: 'border-box',\n        fontSize: '14px',\n        border: '1px solid #dadfe3',\n        borderRadius: '4px',\n        marginTop: '20px'\n      };\n\n      var textareaStyles = {\n        height: '80px',\n        resize: 'none'\n      };\n\n      return React.createElement(\n        React.Fragment,\n        null,\n        React.createElement(\n          'div',\n          { style: { padding: '10px 15px' } },\n          React.createElement('input', { style: { ...inputStyles, marginTop: '0' }, placeholder: 'name' }),\n          React.createElement('input', { style: inputStyles, placeholder: 'email' }),\n          React.createElement('textarea', { style: { ...inputStyles, ...textareaStyles }, placeholder: 'send message' }),\n          React.createElement(\n            'button',\n            { onClick: this.props.actionsCreator.goToDialog },\n            'Send'\n          )\n        )\n      );\n    }\n  }]);\n\n  return Welcome;\n}(React.PureComponent);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    isOpened: state.application.opened\n  };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    actionsCreator: (0, _redux.bindActionCreators)(actionsCreators, dispatch)\n  };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Welcome);\n\n//# sourceURL=webpack:///./src/ui/containers/welcome/index.js?");
 
 /***/ }),
 
