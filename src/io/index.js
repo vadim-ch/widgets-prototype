@@ -1,8 +1,18 @@
+var urlParams = new URLSearchParams(window.location.search)
+
+export const auth = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('123-345');
+        }, 3000);
+    });
+}
+
 export const getGroups = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve([{'operatorId': '567'}, {'operatorId': '897'}]);
-            // resolve([{'operatorId': '567'}]);
+            const result = [{'operatorId': '567'}, {'operatorId': '897'}];
+            resolve(urlParams.has('oneGroup') ? [result[0]] : result);
         }, 1500);
     });
 }
@@ -10,7 +20,28 @@ export const getGroups = () => {
 export const getDialog = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve('123-345');
+            resolve({
+                id: '79797-979'
+            });
         }, 3000);
+    });
+}
+
+export const getHistory = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve([
+                {
+                    id: '123',
+                    type: 'visitor',
+                    text: 'yo'
+                },
+                {
+                    id: '456',
+                    type: 'operator',
+                    text: 'Hi'
+                }
+            ]);
+        }, 1000);
     });
 }

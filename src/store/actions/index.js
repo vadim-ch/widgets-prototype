@@ -5,3 +5,8 @@ export { destroyDialog } from './destroy-dialog';
 export { startDialog } from './start-dialog';
 export { setGroups } from './set-groups';
 export { goToDialog } from './got-to-dialog';
+export { receiveHistory } from './receive-history';
+export { receiveMessage } from './receive-message';
+export { startApp } from './start-app';
+export { setInvitation } from './set-invitation';
+export { destroyInvitation } from './destroy-invitation';

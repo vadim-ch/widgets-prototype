@@ -32,7 +32,7 @@ class Welcome extends React.PureComponent {
           <input style={{...inputStyles, marginTop: '0'}} placeholder="name"/>
           <input style={inputStyles} placeholder="email"/>
           <textarea style={{...inputStyles, ...textareaStyles}} placeholder="send message"/>
-          <button onClick={this.props.actionsCreator.goToDialog()}>Send</button>
+          <button onClick={this.props.actionsCreator.goToDialog}>Send</button>
         </div>
       </React.Fragment>
     );

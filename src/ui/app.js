@@ -10,6 +10,10 @@ class App extends React.PureComponent {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.actionsCreators.startApp();
+  }
+
   render() {   
     const { isOpened } = this.props;
     return (

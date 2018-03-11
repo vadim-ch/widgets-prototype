@@ -2,7 +2,7 @@ import { SET_DIALOG } from '../../actions/set-dialog';
 import { DESTROY_DIALOG } from '../../actions/destroy-dialog';
 
 const initialState = {
-    visitor: ''
+    id: ''
 };
 
 export function dialog(state = initialState, action) {
@@ -10,12 +10,12 @@ export function dialog(state = initialState, action) {
     case SET_DIALOG:
       return {
         ...state,
-        visitor: action.payload
+        id: action.payload.id
       };
     case DESTROY_DIALOG:
       return {
         ...state,
-        visitor: ''
+        id: ''
       };
     default:
       return state;

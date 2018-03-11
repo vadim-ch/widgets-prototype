@@ -1,3 +1,3 @@
 export const isDialogAvailable = (state) => {
-    return Boolean(state.dialog.visitor);
+    return Boolean(state.dialog.id);
 }

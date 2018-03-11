@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as actionsCreators from '../../../store/actions';
 import { bindActionCreators } from 'redux';
+import { getMessages } from '../../../store/reducers/messages/selectors';
 
 class Dialog extends React.PureComponent {
   constructor(props) {
@@ -13,9 +14,9 @@ class Dialog extends React.PureComponent {
       return (
         <React.Fragment>
           <div style={{padding: '10px 15px'}}>
-            messages.map(msg => 
-              <div style={{textAlign: msg.type === 'operator' ? 'left' : 'right'}}>msg.text</div>
-            )
+            {messages.map(msg => 
+              <div key={msg.id} style={{textAlign: msg.type === 'operator' ? 'left' : 'right'}}>{msg.text}</div>
+            )}
           </div>
         </React.Fragment>
       );
@@ -24,7 +25,7 @@ class Dialog extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-      isOpened: state.application.opened
+      messages: getMessages(state)
     };
   };
   
