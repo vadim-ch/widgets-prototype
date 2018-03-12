@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { isAvailable } from "../../../store/reducers/available/selectors";
 import { FrameState } from "../../../store/middlewares/frame-state-middleware";
 
-class Welcome extends React.PureComponent {
+class Offline extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -31,12 +31,12 @@ class Welcome extends React.PureComponent {
     return (
       <React.Fragment>
         <div style={{padding: '10px 15px'}}>
-          Welcome form
+          Offline form
           <input style={{...inputStyles, marginTop: '0'}} placeholder="name"/>
           <input style={inputStyles} placeholder="email"/>
           <textarea style={{...inputStyles, ...textareaStyles}} placeholder="send message"/>
           <button onClick={this.props.actionsCreator.goToDialog}>Send</button>
-          {!this.props.isOnline ? <button onClick={() => this.props.actionsCreator.setFrameState(FrameState.OFFLINE)}>Go to offline form</button> : null}
+          {this.props.isOnline ? <button onClick={() => this.props.actionsCreator.setFrameState(FrameState.ONLINE)}>Go to online form</button> : null}
         </div>
       </React.Fragment>
     );
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
     actionsCreator: bindActionCreators(actionsCreators, dispatch)
   });
   
-export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
+export default connect(mapStateToProps, mapDispatchToProps)(Offline);

@@ -6,7 +6,7 @@ import { isDialogAvailable } from '../reducers/dialog/selectors';
 import { isOneGroup } from '../reducers/groups/selectors';
 import { GO_TO_DIALOG } from '../actions/got-to-dialog';
 import { isAvailable } from '../reducers/available/selectors';
-import { FrameState } from './view-state-middleware';
+import { FrameState } from './frame-state-middleware';
 
 export const dialogMiddleware = store => next => action => {
   const state = store.getState();

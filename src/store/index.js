@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, Store, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import { reducers } from './reducers';
 import * as middlewares from './middlewares';
@@ -17,7 +17,7 @@ export const store = createStore(
       middlewares.invitationMiddleware,
       middlewares.availableMiddleware,
       middlewares.offlineMiddleware,
-      middlewares.viewStateMiddleware,
+      middlewares.frameStateMiddleware,
       middlewares.websocketMiddleware,
       createLogger()
     )

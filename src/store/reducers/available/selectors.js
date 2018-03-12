@@ -1,3 +1,3 @@
 export const isAvailable = state => {
-    return Boolean(state.available);
-}
+  return Boolean(state.available);
+};
