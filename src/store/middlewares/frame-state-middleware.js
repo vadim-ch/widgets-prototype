@@ -27,7 +27,7 @@ export const frameStateMiddleware = store => next => action => {
           return next(action);
       }
       case OPEN_FRAME:
-      case CLOSE_FRAME:
+      // case CLOSE_FRAME:
         const result = next(action);
         const state = store.getState();
           store.dispatch(actionsCreators.setFrameState(

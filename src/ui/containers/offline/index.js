@@ -35,7 +35,7 @@ class Offline extends React.PureComponent {
           <input style={{...inputStyles, marginTop: '0'}} placeholder="name"/>
           <input style={inputStyles} placeholder="email"/>
           <textarea style={{...inputStyles, ...textareaStyles}} placeholder="send message"/>
-          <button onClick={this.props.actionsCreator.goToDialog}>Send</button>
+          <button onClick={() => console.error('send offline form')}>Send</button>
           {this.props.isOnline ? <button onClick={() => this.props.actionsCreator.setFrameState(FrameState.ONLINE)}>Go to online form</button> : null}
         </div>
       </React.Fragment>
